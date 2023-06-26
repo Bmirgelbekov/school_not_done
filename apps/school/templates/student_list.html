@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Список учеников</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ФИО</th>
+        <th>Email</th>
+        <th>Дата рождения</th>
+        <th>Класс</th>
+        <th>Адрес</th>
+        <th>Пол</th>
+        <th>Фото</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+        <tr>
+          <td>{{ student.name }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.date_of_birth }}</td>
+          <td>{{ student.class }}</td>
+          <td>{{ student.address }}</td>
+          <td>{{ student.gender }}</td>
+          <td>{% if student.photo %}<img src="{{ student.photo.url }}" alt="Фото">{% endif %}</td>
+          <td>
+            <a href="{% url 'update_student' student.id %}">Изменить</a>
+            <a href="{% url 'delete_student' student.id %}">Удалить</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
