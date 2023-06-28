@@ -64,7 +64,7 @@ def login_teacher(request):
             user = authenticate(request, phone_number=phone_number, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('student_list')  # Замените 'dashboard' на вашу целевую страницу после успешного входа
+                return redirect('student_list')  
             else:
                 form.add_error(None, 'Неверный номер телефона или пароль.')
     else:
